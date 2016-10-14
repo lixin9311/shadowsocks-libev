@@ -2,18 +2,20 @@ FROM ubuntu:latest
 
 MAINTAINER Sah Lee <contact@leesah.name>
 
-ENV DEPENDENCIES git-core build-essential autoconf libtool libssl-dev asciidoc xmlto
-ENV BASEDIR ./shadowsocks-libev
+ENV DEPENDENCIES git-core build-essential autoconf libtool libssl-dev asciidoc xmlto unzip wget
+ENV BASEDIR /tmp/shadowsocks-libev
 ENV SERVER_PORT 8338
 
 # Set up building environment
-RUN ls
 RUN apt-get update \
  && apt-get --no-install-recommends install -y $DEPENDENCIES
 
 # Get the latest code, build and install
-# RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git $BASEDIR
+# RUN git clone http://github.com/shadowsocks/shadowsocks-libev.git $BASEDIR
 WORKDIR $BASEDIR
+RUN wget https://github.com/shadowsocks/shadowsocks-libev/archive/master.zip -O shadowsocks-libev-master.zip
+RUN unzip shadowsocks-libev-master.zip
+RUN mv ./shadowsocks-libev-master/* ./
 RUN ./configure \
  && make \
  && make install
