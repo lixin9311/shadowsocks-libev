@@ -13,7 +13,7 @@ RUN apt-get update \
 # Get the latest code, build and install
 # RUN git clone http://github.com/shadowsocks/shadowsocks-libev.git $BASEDIR
 WORKDIR $BASEDIR
-RUN wget https://github.com/shadowsocks/shadowsocks-libev/archive/master.zip -O shadowsocks-libev-master.zip
+RUN wget https://github.com/shadowsocks/shadowsocks-libev/archive/master.zip -O shadowsocks-libev-master.zip --no-check-certificate
 RUN unzip shadowsocks-libev-master.zip
 RUN mv ./shadowsocks-libev-master/* ./
 RUN ./configure \
