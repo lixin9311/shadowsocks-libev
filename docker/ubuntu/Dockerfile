@@ -7,6 +7,7 @@ ENV BASEDIR ./shadowsocks-libev
 ENV SERVER_PORT 8338
 
 # Set up building environment
+RUN ls
 RUN apt-get update \
  && apt-get --no-install-recommends install -y $DEPENDENCIES
 
